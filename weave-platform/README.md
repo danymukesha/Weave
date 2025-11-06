@@ -24,3 +24,31 @@ Its designed architecture provides a unified framework for biological data proce
 
 - Java 17 or higher
 - Maven 3.8+
+
+## Implementation
+
+After cloning, run this command: 
+
+```bash
+cd weave-platform
+mvn clean compile
+mvn exec:java -Dexec.mainClass="com.weave.WeaveApplication"
+```
+
+| File | Purpose |
+|------|---------|
+| **BioWeaveMessageBus** | Pub/sub messaging system for components |
+| **Message** | Event data container with builder pattern |
+| **MessageHandler** | Interface for message processing |
+| **DataConnector** | Base class for all data sources |
+| **FileConnector** | Reads/writes bioinformatics files |
+| **DatabaseConnector** | SQL database integration |
+| **APIConnector** | REST API integration |
+| **WorkflowEngine** | Executes multi-step pipelines |
+| **Pipeline** | Defines workflow sequences |
+| **PipelineStep** | Individual processing step |
+| **ExecutionContext** | Stores inputs/outputs during execution |
+| **ExecutionResult** | Returns success/failure status |
+| **DataSet** | Tabular data structure |
+| **Sample** | Biological sample entity |
+| **BioWeaveApplication** | Main entry point with examples |
