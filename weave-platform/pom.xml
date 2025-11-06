@@ -5,12 +5,12 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.weave</groupId>
-    <artifactId>weave-platform</artifactId>
+    <groupId>com.bioweave</groupId>
+    <artifactId>bioweave-platform</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     
-    <name>Weave Platform</name>
+    <name>BioWeave Platform</name>
     <description>Enterprise Bioinformatics Integration and Analytics Platform</description>
     
     <properties>
@@ -25,6 +25,13 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
+        </dependency>
+        
+        <!-- MySQL Driver (optional) -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
         </dependency>
         
         <!-- JSON Processing -->
@@ -54,6 +61,13 @@
             <version>2.0.9</version>
         </dependency>
         
+        <!-- Apache Commons for utilities -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.13.0</version>
+        </dependency>
+        
         <!-- JUnit for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -65,12 +79,18 @@
     
     <build>
         <plugins>
+            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
             </plugin>
             
+            <!-- JAR Plugin for CLI -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -78,11 +98,95 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.weave.WeaveApplication</mainClass>
+                            <mainClass>com.bioweave.BioWeaveApplication</mainClass>
+                            <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
+            
+            <!-- Assembly Plugin for Uber JAR with dependencies -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.bioweave.BioWeaveApplication</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Exec Plugin for running -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <!-- CLI Application -->
+                    <execution>
+                        <id>run-cli</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.bioweave.BioWeaveApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <!-- GUI Application -->
+                    <execution>
+                        <id>run-gui</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.bioweave.gui.BioWeaveGUI</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Test Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
         </plugins>
     </build>
+    
+    <!-- Profiles for different execution modes -->
+    <profiles>
+        <profile>
+            <id>gui</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.bioweave.gui.BioWeaveGUI</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -92,7 +92,8 @@ After cloning, run this command:
 ```bash
 cd weave-platform
 mvn clean compile
-mvn exec:java -Dexec.mainClass="com.weave.WeaveApplication"
+mvn exec:java -Dexec.mainClass="com.weave.gui.WeaveGUI" # for GUI
+mvn exec:java -Dexec.mainClass="com.weave.WeaveApplication" # for CLI with examples
 ```
 
 | File | Purpose |
