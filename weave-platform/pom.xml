@@ -5,12 +5,12 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.bioweave</groupId>
-    <artifactId>bioweave-platform</artifactId>
+    <groupId>com.weave</groupId>
+    <artifactId>weave-platform</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     
-    <name>BioWeave Platform</name>
+    <name>Weave Platform</name>
     <description>Enterprise Bioinformatics Integration and Analytics Platform</description>
     
     <properties>
@@ -98,7 +98,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.bioweave.BioWeaveApplication</mainClass>
+                            <mainClass>com.weave.WeaveApplication</mainClass>
                             <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
@@ -119,7 +119,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.bioweave.BioWeaveApplication</mainClass>
+                                    <mainClass>com.weave.WeaveApplication</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -143,7 +143,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.bioweave.BioWeaveApplication</mainClass>
+                            <mainClass>com.weave.WeaveApplication</mainClass>
                         </configuration>
                     </execution>
                     <!-- GUI Application -->
@@ -153,7 +153,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.bioweave.gui.BioWeaveGUI</mainClass>
+                            <mainClass>com.weave.gui.WeaveGUI</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -180,7 +180,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.bioweave.gui.BioWeaveGUI</mainClass>
+                                    <mainClass>com.weave.gui.WeaveGUI</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
