@@ -113,3 +113,7 @@ mvn exec:java -Dexec.mainClass="com.weave.WeaveApplication" # for CLI with examp
 | **DataSet** | Tabular data structure |
 | **Sample** | Biological sample entity |
 | **WeaveApplication** | Main entry point with examples |
+
+## Weave™ Prototype demo
+
+![](/weave-platform/src/main/java/com/weave/demo/WeavePrototype.jpg)
